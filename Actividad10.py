@@ -42,42 +42,42 @@ while count <= quantity:
         "stock": stock,
     }
     count += 1
-
 print("\nLista de productos registrados: ")
 for cod, data in inventario.items():
     print(cod, "|", data["name"], "|", data["category"], "| Talla:", data["size"], "| Q", data["price"], "| Stock:", data["stock"])
 print()
-    searching_code = input("\nIngresa un código de producto para ver sus detalles: ")
-    if searching_code in inventario.keys():
-        prod = inventario[searching_code]
-        print("\n----Detalles de tu producto----")
-        print("Nombre: ", prod["name"])
-        print("Categoría: ", prod["category"])
-        print("Talla: ", prod["size"])
-        print("Precio: ", prod["price"])
-        print("Stock: ", prod["stock"])
-    else:
-         print("Producto no encontrado.")
 
-    total  = 0
-    for prod in inventario.values():
-        total = total + (prod["price"] * prod["stock"])
+searching_code = input("\nIngresa un código de producto para ver sus detalles: ")
+if searching_code in inventario.keys():
+    prod = inventario[searching_code]
+    print("\n----Detalles de tu producto----")
+    print("Nombre: ", prod["name"])
+    print("Categoría: ", prod["category"])
+    print("Talla: ", prod["size"])
+    print("Precio: ", prod["price"])
+    print("Stock: ", prod["stock"])
+else:
+    print("Producto no encontrado.")
 
-    print("\nValor total del inventario: Q.", round(total, 2))
+total = 0
+for prod in inventario.values():
+    total += prod["price"] * prod["stock"]
 
-    man = 0
-    woman = 0
-    boy = 0
+print("\nValor total del inventario: Q.", round(total, 2))
 
-    for prod in inventario.values():
-        if prod["category"] == "Hombre":
-            man = man + 1
-        if prod["category"] == "Mujer":
-            woman = woman + 1
-        if prod["category"] == "Niño":
-            boy = boy + 1
+man = 0
+woman = 0
+boy = 0
 
-    print("\nCantidad de productos por categoría:")
-    print("Hombre:", man)
-    print("Mujer:", woman)
-    print("Niño:", boy)
+for prod in inventario.values():
+    if prod["category"] == "Hombre":
+        man += 1
+    if prod["category"] == "Mujer":
+        woman += 1
+    if prod["category"] == "Niño":
+        boy += 1
+
+print("\nCantidad de productos por categoría:")
+print("Hombre:", man)
+print("Mujer:", woman)
+print("Niño:", boy)
